@@ -14,27 +14,22 @@ class FeedViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var posts = [3, 2, 1] //: [PFObject]!
+    var posts: [PFObject]? //: [PFObject]!
     
     let postTableViewCellIdentifier = "com.martykausas.PostTableViewCell"
     let postHeaderTableViewCellIdentifier = "com.martykausas.PostHeaderTableViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-        tableView.rowHeight = UITableViewAutomaticDimension;
-        tableView.estimatedRowHeight = 448.0; // set to whatever your "average" cell height is
 
-
-        let cellNib = UINib(nibName: "PostTableViewCell", bundle: NSBundle.mainBundle())
-        tableView.registerNib(cellNib, forCellReuseIdentifier: postTableViewCellIdentifier)
+        UserMedia.getPosts { (posts, error) -> () in
+            if error == nil {
+                self.posts = posts
+                self.tableView.reloadData()
+            }
+        }
         
-        let headerNib = UINib(nibName: "PostHeaderTableViewCell", bundle: NSBundle.mainBundle())
-        tableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: postHeaderTableViewCellIdentifier)
-
+        tableViewSetup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +37,20 @@ class FeedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableViewSetup() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        tableView.rowHeight = UITableViewAutomaticDimension;
+        tableView.estimatedRowHeight = 448.0; // set to whatever your "average" cell height is
+        
+        
+        let cellNib = UINib(nibName: "PostTableViewCell", bundle: NSBundle.mainBundle())
+        tableView.registerNib(cellNib, forCellReuseIdentifier: postTableViewCellIdentifier)
+        
+        let headerNib = UINib(nibName: "PostHeaderTableViewCell", bundle: NSBundle.mainBundle())
+        tableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: postHeaderTableViewCellIdentifier)
+    }
 
     /*
     // MARK: - Navigation
@@ -62,8 +71,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(postTableViewCellIdentifier, forIndexPath: indexPath) as! PostTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(postTableViewCellIdentifier, forIndexPath: indexPath) as! PostTableViewCell
         
+        cell.postDetails = posts![indexPath.section]
         
         return cell
     }
@@ -73,7 +83,11 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return posts.count
+        if let posts = posts {
+            return posts.count
+        }
+        
+        return 0
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

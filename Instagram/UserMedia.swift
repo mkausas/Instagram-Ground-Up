@@ -54,4 +54,29 @@ class UserMedia: NSObject {
         }
         return nil
     }
+    
+    class func getPost(objectId: String) {
+        let query = PFQuery(className: "UserMedia")
+        query.getObjectInBackgroundWithId(objectId) {
+            (userMedia: PFObject?, error: NSError?) -> Void in
+            if error == nil {
+                print(userMedia)
+            } else {
+                print(error)
+            }
+        }
+    }
+    
+    class func getPosts(completion: (posts: [PFObject]?, error: NSError?) -> ()) {
+        let query = PFQuery(className: "UserMedia")
+        query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                print("success retrieving posts!")
+                completion(posts: posts, error: nil)
+            } else {
+                print("Error fetching posts: \(error.debugDescription)")
+                completion(posts: nil, error: error)
+            }
+        }
+    }
 }

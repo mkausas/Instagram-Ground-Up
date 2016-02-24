@@ -137,7 +137,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="448" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ujy-EI-Tbc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="com.martykausas.PostTableViewCell" id="qFc-mw-Ksu">
@@ -170,12 +170,14 @@
                             <constraint firstItem="Ujy-EI-Tbc" firstAttribute="top" secondItem="jmQ-TC-4FY" secondAttribute="bottom" id="W2Q-Dh-7Rm"/>
                             <constraint firstItem="Ujy-EI-Tbc" firstAttribute="top" secondItem="f5W-l1-gxr" secondAttribute="top" id="b0t-g4-VPW"/>
                             <constraint firstItem="Ujy-EI-Tbc" firstAttribute="top" secondItem="jmQ-TC-4FY" secondAttribute="bottom" id="nqH-nI-X3N"/>
+                            <constraint firstAttribute="bottom" secondItem="Ujy-EI-Tbc" secondAttribute="bottom" id="svw-hu-ynk"/>
                             <constraint firstItem="Ujy-EI-Tbc" firstAttribute="leading" secondItem="f5W-l1-gxr" secondAttribute="leading" id="uRd-XN-Tz2"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="W2Q-Dh-7Rm"/>
                                 <exclude reference="nqH-nI-X3N"/>
+                                <exclude reference="26s-AW-LUa"/>
                             </mask>
                         </variation>
                     </view>

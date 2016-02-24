@@ -7,11 +7,40 @@
 //
 
 import UIKit
+import Parse
+import AFNetworking
 
 class PostTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var postImageView: UIImageView!
     
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var likeCountLabel: UILabel!
+    
+    
+    var postDetails: PFObject! {
+        didSet {
+            if let userPicture = postDetails.valueForKey("media") {
+                userPicture.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                    if error == nil {
+                        print("successfully retrieved post image")
+                        self.postImageView.image = UIImage(data: imageData!)
+                        
+                    } else {
+                        print("error retrieving post image")
+                    }
+                    
+                    }, progressBlock: { (progress: Int32) -> Void in
+                        
+                })
+            }
+            
+            
+            
+            descriptionLabel.text = postDetails
+            .valueForKey("caption") as? String
+            likeCountLabel.text = "\(postDetails.valueForKey("likesCount") as! Int) likes"
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
