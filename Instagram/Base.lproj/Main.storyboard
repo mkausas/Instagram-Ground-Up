@@ -105,8 +105,8 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6b-bA-l6Y">
-                                <rect key="frame" x="132" y="233" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="140" y="233" width="31" height="30"/>
+                                <state key="normal" title="post"/>
                                 <connections>
                                     <action selector="onPostImage:" destination="Lf8-yX-jHq" eventType="touchUpInside" id="bDR-Wx-IMs"/>
                                 </connections>
@@ -124,10 +124,10 @@
             </objects>
             <point key="canvasLocation" x="1843" y="1058"/>
         </scene>
-        <!--View Controller-->
+        <!--Feed View Controller-->
         <scene sceneID="BRe-0v-5I2">
             <objects>
-                <viewController id="upO-06-VC7" sceneMemberID="viewController">
+                <viewController id="upO-06-VC7" customClass="FeedViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jmQ-TC-4FY"/>
                         <viewControllerLayoutGuide type="bottom" id="kh6-Dy-NvK"/>
@@ -135,10 +135,55 @@
                     <view key="view" contentMode="scaleToFill" id="f5W-l1-gxr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="448" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ujy-EI-Tbc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="com.martykausas.PostTableViewCell" id="qFc-mw-Ksu">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="448"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qFc-mw-Ksu" id="Yef-x0-iVN">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="447.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="com.martykausas.PostHeaderTableViewCell" id="Gfi-vU-UUn">
+                                        <rect key="frame" x="0.0" y="540" width="320" height="448"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gfi-vU-UUn" id="OeW-pW-vdu">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="447.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="upO-06-VC7" id="Ubx-Td-Of0"/>
+                                    <outlet property="delegate" destination="upO-06-VC7" id="mZk-C8-kLF"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kh6-Dy-NvK" firstAttribute="top" secondItem="Ujy-EI-Tbc" secondAttribute="bottom" id="26s-AW-LUa"/>
+                            <constraint firstAttribute="trailing" secondItem="Ujy-EI-Tbc" secondAttribute="trailing" id="TGR-Y3-a62"/>
+                            <constraint firstItem="Ujy-EI-Tbc" firstAttribute="top" secondItem="jmQ-TC-4FY" secondAttribute="bottom" id="W2Q-Dh-7Rm"/>
+                            <constraint firstItem="Ujy-EI-Tbc" firstAttribute="top" secondItem="f5W-l1-gxr" secondAttribute="top" id="b0t-g4-VPW"/>
+                            <constraint firstItem="Ujy-EI-Tbc" firstAttribute="top" secondItem="jmQ-TC-4FY" secondAttribute="bottom" id="nqH-nI-X3N"/>
+                            <constraint firstItem="Ujy-EI-Tbc" firstAttribute="leading" secondItem="f5W-l1-gxr" secondAttribute="leading" id="uRd-XN-Tz2"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="W2Q-Dh-7Rm"/>
+                                <exclude reference="nqH-nI-X3N"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="DF3-yk-Lju"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tableView" destination="Ujy-EI-Tbc" id="30h-RK-xOt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l5N-Tv-MX2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

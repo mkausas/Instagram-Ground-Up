@@ -11,6 +11,11 @@
 		BD76C09A1C7D5A3E00749B35 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD76C0991C7D5A3E00749B35 /* UserViewController.swift */; };
 		BD76C09C1C7D68A500749B35 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD76C09B1C7D68A500749B35 /* PhotoViewController.swift */; };
 		BD76C09F1C7D6C1700749B35 /* UserMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD76C09E1C7D6C1700749B35 /* UserMedia.swift */; };
+		BD76C0A11C7E247C00749B35 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD76C0A01C7E247C00749B35 /* FeedViewController.swift */; };
+		BD76C0A51C7E260000749B35 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD76C0A31C7E260000749B35 /* PostTableViewCell.swift */; };
+		BD76C0A61C7E260000749B35 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD76C0A41C7E260000749B35 /* PostTableViewCell.xib */; };
+		BD76C0A91C7E388F00749B35 /* PostHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD76C0A71C7E388F00749B35 /* PostHeaderTableViewCell.swift */; };
+		BD76C0AA1C7E388F00749B35 /* PostHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD76C0A81C7E388F00749B35 /* PostHeaderTableViewCell.xib */; };
 		BD92AD121C7D00B4005E51DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD92AD111C7D00B4005E51DA /* AppDelegate.swift */; };
 		BD92AD171C7D00B4005E51DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD92AD151C7D00B4005E51DA /* Main.storyboard */; };
 		BD92AD191C7D00B4005E51DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD92AD181C7D00B4005E51DA /* Assets.xcassets */; };
@@ -25,6 +30,11 @@
 		BD76C0991C7D5A3E00749B35 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		BD76C09B1C7D68A500749B35 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		BD76C09E1C7D6C1700749B35 /* UserMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMedia.swift; sourceTree = "<group>"; };
+		BD76C0A01C7E247C00749B35 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		BD76C0A31C7E260000749B35 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		BD76C0A41C7E260000749B35 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		BD76C0A71C7E388F00749B35 /* PostHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		BD76C0A81C7E388F00749B35 /* PostHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		BD92AD0E1C7D00B4005E51DA /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD92AD111C7D00B4005E51DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD92AD161C7D00B4005E51DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +70,7 @@
 				BD76C0961C7D0A5E00749B35 /* LoginViewController.swift */,
 				BD76C0991C7D5A3E00749B35 /* UserViewController.swift */,
 				BD76C09B1C7D68A500749B35 /* PhotoViewController.swift */,
+				BD76C0A01C7E247C00749B35 /* FeedViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -70,6 +81,17 @@
 				BD76C09E1C7D6C1700749B35 /* UserMedia.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		BD76C0A21C7E257600749B35 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BD76C0A31C7E260000749B35 /* PostTableViewCell.swift */,
+				BD76C0A41C7E260000749B35 /* PostTableViewCell.xib */,
+				BD76C0A71C7E388F00749B35 /* PostHeaderTableViewCell.swift */,
+				BD76C0A81C7E388F00749B35 /* PostHeaderTableViewCell.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		BD92AD051C7D00B4005E51DA = {
@@ -93,6 +115,7 @@
 		BD92AD101C7D00B4005E51DA /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				BD76C0A21C7E257600749B35 /* Views */,
 				BD76C09D1C7D6C0B00749B35 /* Models */,
 				BD76C0981C7D5A0100749B35 /* View Controllers */,
 				BD92AD111C7D00B4005E51DA /* AppDelegate.swift */,
@@ -177,6 +200,8 @@
 				BD92AD1C1C7D00B5005E51DA /* LaunchScreen.storyboard in Resources */,
 				BD92AD191C7D00B4005E51DA /* Assets.xcassets in Resources */,
 				BD92AD171C7D00B4005E51DA /* Main.storyboard in Resources */,
+				BD76C0AA1C7E388F00749B35 /* PostHeaderTableViewCell.xib in Resources */,
+				BD76C0A61C7E260000749B35 /* PostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,10 +260,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD76C0A51C7E260000749B35 /* PostTableViewCell.swift in Sources */,
 				BD76C0971C7D0A5E00749B35 /* LoginViewController.swift in Sources */,
+				BD76C0A91C7E388F00749B35 /* PostHeaderTableViewCell.swift in Sources */,
 				BD76C09C1C7D68A500749B35 /* PhotoViewController.swift in Sources */,
 				BD76C09A1C7D5A3E00749B35 /* UserViewController.swift in Sources */,
 				BD76C09F1C7D6C1700749B35 /* UserMedia.swift in Sources */,
+				BD76C0A11C7E247C00749B35 /* FeedViewController.swift in Sources */,
 				BD92AD121C7D00B4005E51DA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
