@@ -18,12 +18,29 @@ class LoginViewController: UIViewController {
     var errorAlertController: UIAlertController?
     var alertOkAction: UIAlertAction?
     
+    var automaticLogin = true
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        attemptLogin()
         
         alertOkAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
 
         // Do any additional setup after loading the view.
+    }
+    
+    func attemptLogin() {
+        if automaticLogin {
+            let prefs = NSUserDefaults.standardUserDefaults()
+            if let userDetails = prefs.objectForKey("user") as? [String] {
+                PFUser.logInWithUsernameInBackground(userDetails[0], password: userDetails[1], block: { (user: PFUser?, error: NSError?) -> Void in
+                    self.performSegueWithIdentifier("loginSegue", sender: nil)
+                    
+                })
+            }
+        } else {
+            automaticLogin = true
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +61,16 @@ class LoginViewController: UIViewController {
             if error == nil {
                 print("Successfully logged in!")
                 
+                let userDetails: [String] = [self.usernameField.text!, self.passwordField.text!]
                 
+                // save user for immediate login
+                let prefs = NSUserDefaults.standardUserDefaults()
+                prefs.setObject(userDetails, forKey: "user") //  forKey: PFUser.currentUser()?.password
+//                prefs.setObject(PFUser.currentUser()?.password, forKey: "password") //  forKey: PFUser.currentUser()?.password
+                NSUserDefaults.standardUserDefaults().synchronize()
+
+                self.performSegueWithIdentifier("loginSegue", sender: nil)
+
             } else {
                 self.displayErrorAlertView("Login Error", message: (error?.description)!)
             }
