@@ -13,7 +13,8 @@ class FeedViewController: UIViewController {
 
     
     @IBOutlet weak var tableView: UITableView!
-    
+    var refreshControl: UIRefreshControl!
+
     var posts: [PFObject]? //: [PFObject]!
     
     let postTableViewCellIdentifier = "com.martykausas.PostTableViewCell"
@@ -22,14 +23,22 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableViewSetup()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        grabData()
+    }
+    
+    func grabData() {
         UserMedia.getPosts { (posts, error) -> () in
             if error == nil {
                 self.posts = posts
                 self.tableView.reloadData()
             }
         }
-        
-        tableViewSetup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,12 +47,19 @@ class FeedViewController: UIViewController {
     }
     
     func tableViewSetup() {
+        
+        // implement pull to refresh
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+        
+        grabData()
+        
         tableView.dataSource = self
         tableView.delegate = self
         
         tableView.rowHeight = UITableViewAutomaticDimension;
         tableView.estimatedRowHeight = 448.0; // set to whatever your "average" cell height is
-        
         
         let cellNib = UINib(nibName: "PostTableViewCell", bundle: NSBundle.mainBundle())
         tableView.registerNib(cellNib, forCellReuseIdentifier: postTableViewCellIdentifier)
@@ -52,6 +68,12 @@ class FeedViewController: UIViewController {
         tableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: postHeaderTableViewCellIdentifier)
     }
 
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        grabData()
+        refreshControl.endRefreshing()
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -79,7 +101,8 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Header"
+        let author = posts![section].valueForKey("author")?.username
+        return author!
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

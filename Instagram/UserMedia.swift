@@ -69,6 +69,8 @@ class UserMedia: NSObject {
     
     class func getPosts(completion: (posts: [PFObject]?, error: NSError?) -> ()) {
         let query = PFQuery(className: "UserMedia")
+        query.addDescendingOrder("createdAt")
+        query.includeKey("author")
         query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 print("success retrieving posts!")

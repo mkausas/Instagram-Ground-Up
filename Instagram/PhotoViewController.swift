@@ -38,7 +38,6 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate {
                 print("error posting image!")
             }
         }
-        
     }
 
     /*
@@ -65,7 +64,7 @@ extension PhotoViewController: UIImagePickerControllerDelegate {
             
             postImage = editedImage
             
-//            UserMedia.postUserImage(edi, withCaption: <#T##String?#>, withCompletion: <#T##PFBooleanResultBlock?##PFBooleanResultBlock?##(Bool, NSError?) -> Void#>)
+//            UserMedia.postUserImage(postImage, withCaption: <#T##String?#>, withCompletion: <#T##PFBooleanResultBlock?##PFBooleanResultBlock?##(Bool, NSError?) -> Void#>)
             
     }
 }
